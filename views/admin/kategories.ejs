@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Kategories</title>
+</head>
+
+<body>
+    <%- include('../layout/adminheader') -%>
+
+    <div class="row">
+        <div class="col-md">
+            <h2 class="page-title text-center">Kategories</h2>
+            <hr style=" width:250px; border-color: brown; ">
+            <a href="/admin/kategories/add-kategories" class="btn btn-primary mb-4">Add a new Kategories</a>
+        </div>
+    </div>
+    <table class="table table-striped sorting ">
+        <thead class=" bg-info text-center">
+            <tr class="home">
+                <th>Kategories</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody class="text-center">
+            <% kategories.forEach(function(kat){ %>
+            <tr id="id_<%= kat._id %>" class="<%= kat.link %>">
+                <td><%= kat.title %></td>
+                <td><a href="/admin/kategories/edit-kategories/<%= kat._id %>" class="btn btn-warning">Edit</a></td>
+                <% if(kat.link == "home"){ %>
+                <td></td>
+                <% }else{ %>
+                <td><a href="/admin/kategories/delete-kategories/<%= kat._id %>"
+                        class="confirmDeletionKat btn btn-danger">Delete</a></td>
+                <% } %>
+            </tr>
+            <% });  %>
+        </tbody>
+    </table>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+        integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+
+    <%- include('../layout/adminfooter') -%>
+</body>
+
+</html>

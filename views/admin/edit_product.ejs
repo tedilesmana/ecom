@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit to Product</title>
+</head>
+
+<body>
+    <%- include('../layout/adminheader') -%>
+
+
+
+    <div class="row">
+        <div class="col-md">
+            <h2 class="page-title text-center">Edit to Product</h2>
+            <hr style=" width:170px; border-color: brown; ">
+            <a href="/admin/product" class="btn btn-primary">Back to all Product</a>
+        </div>
+    </div>
+    <form action="/admin/product/edit-product" method="post" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <label for="title">Title *</label>
+            <input type="title" name="title" class="form-control" value="<%= title %>" id="title"
+                placeholder="Silahkan isi Title">
+        </div>
+        <div class="form-group">
+            <label for="link">Description *</label>
+            <textarea name="desc" id="desc" cols="30" rows="10" class="form-control"
+                placeholder="Silahkan isi description"><%= desc %></textarea>
+            <div class="form-group">
+                <label for="content">Kategories *</label>
+                <select name="kategories" id="" class="form-control">
+                    <% kategories.forEach(function(kat){ %>
+                    <option value="<%= kat.link %>" <% if(kat.link == kategories){ %> selected="selected" <% } %>>
+                        <%= kat.title %></option>
+                    <% }); %>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="price">Price*</label>
+                <input type="number" name="price" class="form-control" value="<%= price %>" id="price"
+                    placeholder="Silahkan isi price">
+            </div>
+            <div class="form-group">
+                <label for="title">Qty *</label>
+                <input type="number" name="qty" class="form-control" value="<%= qty %>" id="qty"
+                    placeholder="Silahkan isi qty">
+                   
+            </div>
+
+            <div class="form-group">
+                <label>Curent Image*</label>
+                <p>
+                    <% if(image == ""){ %>
+                    <img src="/images/p10.jpg" id="imgPreview" alt="" class="curentimage">
+                    <% }else{ %>
+                    <img src="/product_images/<%= image %>" id="imgPreview" class="curentimage"
+                        style="width: 100; height: 100px;" class="ukuran">
+                    <% } %>
+                </p>
+            </div>
+            <div class="form-group">
+                <label for="image">Upload Image*</label>
+                <input type="file" name="image" class="form-control" id="img">
+                <input type="hidden" name="noimage" id="noimage">
+                <input type="hidden" name="piimage" value="<%= image %>">
+                <input type="hidden" name="id" value="<%= id %>">
+                <img src="#" id="imgPreview" alt="">
+            </div>
+            <button class="btn btn-info">Kirim</button>
+    </form>
+    <%- include('../layout/adminfooter') -%>
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imgPreview').attr('src', e.target.result).width(100).height(100);
+                    $('#noimage').val(e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+        $('#img').change(function () {
+            readURL(this);
+        });
+    </script>
+    <script> 
+  
+    // Use of function Date.now() 
+    var A = Date.now(); 
+    
+    // Printing the number of millisecond elapsed  
+    document.getElementById("date"); 
+    
+  </script>     
+</body>
+
+</html>

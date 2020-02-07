@@ -1,0 +1,19 @@
+<%- include ('layout/header') %>
+<div class="col-md-8" style="border-radius:  10px; margin-top: 50px; background-color: coral;">
+    <h1 class="text-center"><%= title %></h1>
+    <form method="POST" action="/user/login">
+        <div class="form-group">
+            <label>Useraname</label>
+            <input type="text" name="username" class="form-control" placeholder="username">
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="password" class="form-control" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-primary mb-4">Login</button>
+        <a href="/user/register" class="btn btn-danger mb-4">Register</a>
+    </form>
+</div>
+
+<%- include ('layout/footer') %>

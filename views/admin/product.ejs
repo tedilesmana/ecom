@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Product Data</title>
+</head>
+
+<body>
+    <%- include('../layout/adminheader') -%>
+
+    <div class="row">
+        <div class="col-md">
+            <h2 class="page-title text-center">Product Data</h2>
+            <hr style=" width:170px; border-color: brown; ">
+            <a href="/admin/product/add-product" class="btn btn-primary mb-4">Add a new Product</a>
+        </div>
+    </div>
+    <% if (count > 0) { %>
+    <table class="table table-striped sorting">
+        <thead class="bg-info text-center">
+            <tr class="home">
+                <th>Product</th>
+                <th>Price</th>
+                <th>Kategory</th>
+                <th>Product image</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody class="text-center">
+            <% product.forEach(function(products){ %>
+            <tr>
+                <td><%= products.title %></td>
+                <td>Rp .<%= products.price %>,00</td>
+                <td><%= products.kategories %></td>
+                <td>
+                    <% if(products.image == "" ) { %>
+                    <img id="noimage" src="/images/p10.jpg" alt="">
+                    <% }else{ %>
+                    <img id="noimage" src="/product_images/<%= products._id %>/<%= products.image %>"
+                        style="width: 100px; height: 100;">
+                    <% } %>
+                </td>
+                <td><a href="/admin/product/edit-product/<%= products._id %>" class="btn btn-warning">Edit</a></td>
+                <td><a href="/admin/product/delete-product/<%= products._id %>"
+                        class="confirmDeletionProduct btn btn-danger">Delete</a></td>
+            </tr>
+            <% });  %>
+        </tbody>
+    </table>
+    <% }else{ %>
+    <h3 class="text-center">Tidak ada Product</h3>
+    <% } %>
+
+    <%- include('../layout/adminfooter') -%>
+</body>
+
+</html>
